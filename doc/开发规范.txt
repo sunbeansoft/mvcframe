@@ -1,0 +1,7 @@
+1、pom增加依赖需经过团队审核。
+version必须在dependencyManagement中声明。
+添加依赖后，需要执行mvn -U dependency:tree -Dverbose进行冲突校验。
+2、禁用魔法数字，如if (type == 2)。
+使用枚举进行类型或状态判断，if (PromotionType.HALF_PRICE.getTypeCode().equals(type))。
+3、禁用java的原生数据类型，如int，需使用Integer，以免由于默认值造成判断错误。
+4、慎用继承。如CacheUtils等继承了RemoteServiceInitUtils。继承会将类的数据和方法传播出去，造成调用者对方法的不清晰，同时容易污染数据。

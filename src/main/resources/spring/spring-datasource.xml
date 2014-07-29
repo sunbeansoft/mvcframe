@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true" />
+
+    <bean id="crmDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url">
+            <value><![CDATA[${crm.db.url}]]></value>
+        </property>
+        <property name="username" value="${crm.db.username}" />
+        <property name="password" value="${crm.db.password}" />
+        <property name="initialSize" value="${crm.db.initialSize}" />
+        <property name="minIdle" value="${crm.db.minIdle}" />
+        <property name="maxIdle" value="${crm.db.maxIdle}" />
+        <property name="maxActive" value="${crm.db.maxActive}" />
+        <property name="validationQuery" value="select 1" />
+    </bean>
+
+    <!-- 事物-->
+    <bean id="crmTXManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="crmDataSource" />
+    </bean>
+    <tx:annotation-driven transaction-manager="crmTXManager" />
+
+    <!--mybatis-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation">
+            <value>classpath:mybatis/mapper.xml</value>
+        </property>
+        <property name="dataSource" ref="crmDataSource" />
+    </bean>
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
+    <!-- 映射dao目录下的接口转换为spring容器中的bean -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="**.dao" />
+        <property name="annotationClass" value="com.baidu.nuomi.crm.datasource.annotation.Mapper"/>
+        <property name="sqlSessionTemplateBeanName" value="sqlSession" />
+    </bean>
+</beans>
