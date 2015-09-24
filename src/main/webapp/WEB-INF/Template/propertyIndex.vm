@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<body>
+<table>
+    <tr>
+        <td>服务名</td>
+        <td>属性名</td>
+        <td>属性值</td>
+        <td>创建时间</td>
+        <td>最后修改时间</td>
+        <td>操作</td>
+    </tr>
+    #foreach($info in $ddrmPropertyList)
+        <tr>
+            <td>$info.domain</td>
+            <td>$info.propertyKey</td>
+            <td><input type="text" value="$info.propertyValue"></td>
+            <td>$info.createTime</td>
+            <td>$info.updateTime</td>
+            <td><a href="/property/updateProperty.json?domain=${info.domain}&propertyKey=${info.propertyKey}&propertyValue=${info.propertyValue}">更新</a> </td>
+        </tr>
+    #end
+</table>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baidu.nuomi.crm.demo.dao.PropertyDao">
+
+    <select id="countProperty" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM ddrm_domain;
+    </select>
+    <resultMap id="propertyMap" type="com.baidu.nuomi.crm.demo.dao.entity.DDRMProperty">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <id column="domain" property="domain" jdbcType="VARCHAR"/>
+        <id column="property_key" property="propertyKey" jdbcType="VARCHAR"/>
+        <id column="property_value" property="propertyValue" jdbcType="VARCHAR"/>
+        <id column="create_time" property="createTime" jdbcType="DATE"/>
+        <id column="update_time" property="updateTime" jdbcType="DATE"/>
+    </resultMap>
+
+    <select id="queryAllProperiesByDomain" resultMap="propertyMap">
+        select id,domain,property_key,property_value,create_time,update_time from ddrm_property where domain=#{domain}
+    </select>
+
+    <update id="updatePropertyValueByDomainAndKey">
+        update ddrm_property
+        set property_value=#{propertyValue}
+        where domain=#{domain} and property_key=#{propertyKey}
+    </update>
+</mapper>

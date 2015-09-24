@@ -1,0 +1,10 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<body>
+<p>domain list</p>
+    #foreach($info in $ddrmDomainList)
+    <a href="/property/propertyIndex.htm?domain=$info.domain">$info.domain</a></p>
+    #end
+<a href="/property/propertyIndex.htm?domain=$info.domain">others</a></p>
+</body>
+</html>

@@ -4,7 +4,7 @@
 
 <configuration>
     <mappers>
-        <!-- category related -->
-        <mapper resource="mybatis/mapper-category.xml" />
+        <mapper resource="mybatis/mapper-domain.xml"/>
+        <mapper resource="mybatis/mapper-property.xml"/>
     </mappers>
 </configuration>
