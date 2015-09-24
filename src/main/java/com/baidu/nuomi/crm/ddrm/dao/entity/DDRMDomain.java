@@ -7,6 +7,8 @@ public class DDRMDomain {
 
     private String user;
 
+    private String classFullName;
+
     public Integer getId() {
         return id;
     }
@@ -29,5 +31,13 @@ public class DDRMDomain {
 
     public void setUser(String user) {
         this.user = user == null ? null : user.trim();
+    }
+
+    public String getClassFullName() {
+        return classFullName;
+    }
+
+    public void setClassFullName(String classFullName) {
+        this.classFullName = classFullName;
     }
 }

@@ -10,5 +10,7 @@ import java.util.List;
  */
 public interface IDDRMDomainService {
 
+    public DDRMDomain getDDRMDomainInfo(String domain);
+
     public List<DDRMDomain> getAllDomain();
 }

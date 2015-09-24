@@ -1,6 +1,11 @@
 package com.baidu.nuomi.crm.ddrm.controller;
 
+import com.baidu.nuomi.crm.ddrm.dao.entity.DDRMDomain;
 import com.baidu.nuomi.crm.ddrm.dao.entity.DDRMProperty;
+import com.baidu.nuomi.crm.ddrm.server.model.DDRMResult;
+import com.baidu.nuomi.crm.ddrm.server.model.FieldResult;
+import com.baidu.nuomi.crm.ddrm.server.service.DDRMService;
+import com.baidu.nuomi.crm.ddrm.service.IDDRMDomainService;
 import com.baidu.nuomi.crm.ddrm.service.IDDRMPropertyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +31,12 @@ public class DDRMPorpertyController {
 
     @Autowired
     private IDDRMPropertyService iddrmPropertyService;
+
+    @Autowired
+    private IDDRMDomainService iddrmDomainService;
+
+    @Autowired
+    private DDRMService ddrmService;
 
 
     /**
@@ -48,6 +60,16 @@ public class DDRMPorpertyController {
         ResultModel resultModel = new ResultModel(false);
         int result = iddrmPropertyService.changePropertyValue(domain, propertyKey, propertyValue);
         if (result > 0) {
+            DDRMResult ddrmResult = new DDRMResult();
+            DDRMDomain ddrmDomain = iddrmDomainService.getDDRMDomainInfo(domain);
+            ddrmResult.setSuccess(true);
+            ddrmResult.setClassFullName(ddrmDomain.getClassFullName());
+            FieldResult fieldResult = new FieldResult();
+            fieldResult.setName(propertyKey);
+            fieldResult.setValue(propertyValue);
+            List<FieldResult> fieldResultList = new ArrayList<FieldResult>();
+            ddrmResult.setResult(fieldResultList);
+            ddrmService.pushPropertiesToDomain(domain, ddrmResult);
             resultModel.setSuccess(true);
             resultModel.setMemo("成功");
         }

@@ -1,8 +1,8 @@
 package com.baidu.nuomi.crm.ddrm.service.impl;
 
-import com.baidu.nuomi.crm.demo.dao.PropertyDao;
-import com.baidu.nuomi.crm.demo.dao.entity.DDRMProperty;
-import com.baidu.nuomi.crm.demo.service.IDDRMPropertyService;
+import com.baidu.nuomi.crm.ddrm.dao.PropertyDao;
+import com.baidu.nuomi.crm.ddrm.dao.entity.DDRMProperty;
+import com.baidu.nuomi.crm.ddrm.service.IDDRMPropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

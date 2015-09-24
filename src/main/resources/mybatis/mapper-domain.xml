@@ -10,8 +10,13 @@
         <id column="id" property="id" jdbcType="INTEGER"/>
         <id column="domain" property="domain" jdbcType="VARCHAR"/>
         <id column="user" property="user" jdbcType="VARCHAR"/>
+        <id column="classFullName" property="class_full_name" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <select id="queryDDRMDomainInfoByName" resultMap="domainMap">
+        select id,domain,user,class_full_name from ddrm_domain where domain=#{domain}
+    </select>
     <select id="queryAllDomain" resultMap="domainMap">
-        select id,domain,user from ddrm_domain
+        select id,domain,user,class_full_name from ddrm_domain
     </select>
 </mapper>
