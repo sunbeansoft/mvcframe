@@ -3,6 +3,8 @@ package com.baidu.nuomi.crm.ddrm.server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+
 /**
  * Created by sunbeansoft on 15-9-1.
  */
@@ -13,7 +15,8 @@ public class Bootstrap {
 
     private Thread server = new Thread(ddrmServer);
 
-    public Bootstrap() {
+    @PostConstruct
+    public void init() {
         server.start();
     }
 }
