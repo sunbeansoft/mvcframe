@@ -63,6 +63,7 @@ public class DDRMPorpertyController {
             DDRMResult ddrmResult = new DDRMResult();
             DDRMDomain ddrmDomain = iddrmDomainService.getDDRMDomainInfo(domain);
             ddrmResult.setSuccess(true);
+            ddrmResult.setDomain(domain);
             ddrmResult.setClassFullName(ddrmDomain.getClassFullName());
             FieldResult fieldResult = new FieldResult();
             fieldResult.setName(propertyKey);

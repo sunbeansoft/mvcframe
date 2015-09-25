@@ -1,6 +1,6 @@
 package com.baidu.nuomi.crm.ddrm.dao;
 
-import com.baidu.nuomi.crm.demo.dao.entity.DDRMProperty;
+import com.baidu.nuomi.crm.ddrm.dao.entity.DDRMProperty;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 

@@ -1,7 +1,8 @@
 package com.baidu.nuomi.crm.ddrm.dao;
 
 
-import com.baidu.nuomi.crm.demo.dao.entity.DDRMProperty;
+
+import com.baidu.nuomi.crm.ddrm.dao.entity.DDRMProperty;
 
 import static org.apache.ibatis.jdbc.SqlBuilder.*;
 

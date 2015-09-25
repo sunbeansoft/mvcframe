@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.baidu.nuomi.crm.demo.dao.DomainDao">
+<mapper namespace="com.baidu.nuomi.crm.ddrm.dao.DomainDao">
 
     <select id="countDomain" resultType="java.lang.Integer">
         SELECT COUNT(id) FROM ddrm_domain;
     </select>
 
-    <resultMap id="domainMap" type="com.baidu.nuomi.crm.demo.dao.entity.DDRMDomain">
+    <resultMap id="domainMap" type="com.baidu.nuomi.crm.ddrm.dao.entity.DDRMDomain">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <id column="domain" property="domain" jdbcType="VARCHAR"/>
         <id column="user" property="user" jdbcType="VARCHAR"/>
@@ -16,7 +16,9 @@
     <select id="queryDDRMDomainInfoByName" resultMap="domainMap">
         select id,domain,user,class_full_name from ddrm_domain where domain=#{domain}
     </select>
+
     <select id="queryAllDomain" resultMap="domainMap">
         select id,domain,user,class_full_name from ddrm_domain
     </select>
+
 </mapper>

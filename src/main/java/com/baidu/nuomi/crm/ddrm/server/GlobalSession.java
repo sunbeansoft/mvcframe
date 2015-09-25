@@ -13,6 +13,11 @@ import java.util.Map;
  * Created by sunbeansoft on 15-8-30.
  */
 public class GlobalSession {
+
+    private GlobalSession() {
+
+    }
+
     /**
      * 服务端向客户端推送数据使用
      */
